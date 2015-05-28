@@ -23,6 +23,10 @@
             android:name=".ProcessActivity"
             android:label="@string/title_activity_process" >
         </activity>
+        <activity
+            android:name=".StepsActivity"
+            android:label="@string/title_activity_steps" >
+        </activity>
     </application>
 
 </manifest>

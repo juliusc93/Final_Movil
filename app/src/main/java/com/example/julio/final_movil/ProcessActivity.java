@@ -66,6 +66,14 @@ public class ProcessActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void getSteps(View view) {
+
+        Intent i = new Intent(this, StepsActivity.class);
+        i.putExtra("stepurl", newurl);
+        startActivity(i);
+
+    }
+
     private class GetData extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {

@@ -7,14 +7,14 @@
 
     <TextView android:layout_width="match_parent" android:layout_height="0dp"
         android:text="Title"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:gravity="center_vertical|center_horizontal"
         android:id="@+id/title"
         android:textSize="35dp" />
 
     <TextView android:layout_width="match_parent" android:layout_height="0dp"
         android:text="Description"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:gravity="center_vertical|center_horizontal"
         android:id="@+id/description"
         android:textSize="30dp" />
@@ -23,14 +23,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_span="1"
-        android:layout_weight="2"
+        android:layout_weight="0.5"
         android:layout_gravity="center"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/content" />
 
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_span="1"
+        android:layout_weight="0.5"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/spinner2"
+        android:visibility="gone"/>
+
     <Button
-        android:id="@+id/btnProcedures"
+        android:id="@+id/btnStep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"

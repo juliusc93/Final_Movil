@@ -73,7 +73,8 @@ public class StepsActivity extends ActionBarActivity {
 
     public void goToNext(View view){
         if(step < 0){
-
+            desc.setText("Finished!");
+            spinner.setVisibility(View.GONE);
         }
         else new GetData().execute();
         //if(title.getVisibility() != View.GONE) title.setVisibility(View.GONE);

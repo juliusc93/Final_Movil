@@ -7,10 +7,10 @@
 
     <TextView android:layout_width="match_parent" android:layout_height="0dp"
         android:text="Title"
-        android:layout_weight="1.5"
+        android:layout_weight="2.23"
         android:gravity="center_vertical|center_horizontal"
         android:id="@+id/title"
-        android:textSize="35dp" />
+        android:textSize="25dp" />
 
     <TextView android:layout_width="match_parent" android:layout_height="0dp"
         android:text="Description"
@@ -28,6 +28,15 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/content" />
+
+    <TextView android:layout_width="match_parent" android:layout_height="0dp"
+        android:text="Description"
+        android:layout_weight="6"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/desc2"
+        android:textSize="30dp"
+        android:visibility="gone"
+        />
 
     <Spinner
         android:layout_width="match_parent"

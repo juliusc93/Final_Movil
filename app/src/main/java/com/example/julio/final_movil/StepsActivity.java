@@ -46,7 +46,8 @@ public class StepsActivity extends ActionBarActivity {
     private JSONArray fields;
     private int cont = 0;
 
-    private int majorBranch=0b00;
+    private String branch1, branch2;
+    private String majorBranch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,11 +89,19 @@ public class StepsActivity extends ActionBarActivity {
     public void goToNext(View view){
 
         if(multibranch){
-            int index = majorBranch;
+            majorBranch = branch1 + "," + branch2;
             boolean x = true;
             try {
-                JSONObject decision = decisions.getJSONObject(index);
-                step = Integer.parseInt(decision.getString("go_to_step")) - 0b01; //stupid offset
+                for(int i = 0; i < decisions.length(); i++) {
+                    JSONObject decision = decisions.getJSONObject(i);
+                    String obj1 = decision.getJSONArray("branch").getJSONObject(0).getString("value");
+                    String obj2 = decision.getJSONArray("branch").getJSONObject(1).getString("value");
+                    String answer = obj1 + "," + obj2;
+                    if(answer.equals(majorBranch)) {
+                        step = Integer.parseInt(decision.getString("go_to_step")) - 0b01; //stupid offset
+                        break;
+                    }
+                }
             }catch(JSONException e){
                 e.printStackTrace();
             }
@@ -243,7 +252,7 @@ public class StepsActivity extends ActionBarActivity {
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     Step s = (Step) adapterView.getItemAtPosition(i);
                     if (!multibranch) step = s.getNext() - 1; // stupid offset
-                    else majorBranch = i * (int)Math.pow(2,i);
+                    else branch1 = s.getName();
                 }
 
                 @Override
@@ -266,7 +275,7 @@ public class StepsActivity extends ActionBarActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Step s = (Step) adapterView.getItemAtPosition(i);
-                majorBranch += i;
+                branch2 = s.getName();
             }
 
             @Override

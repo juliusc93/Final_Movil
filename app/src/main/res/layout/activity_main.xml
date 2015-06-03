@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="#ff00acff">
 
     <LinearLayout
         android:id="@+id/buttonsLayout"
@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Load Procedures"
-            android:onClick="getProcesses" />
+            android:onClick="getProcesses"
+            android:background="#ff0e89ff" />
 
     </LinearLayout>
 

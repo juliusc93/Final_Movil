@@ -2,19 +2,22 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.julio.final_movil.StepsActivity">
+    tools:context="com.example.julio.final_movil.StepsActivity"
+    android:background="#ff00acff">
 
     <TextView android:layout_width="match_parent" android:layout_height="0dp"
         android:text="Title"
         android:layout_weight="1"
         android:gravity="center_vertical|center_horizontal"
-        android:id="@+id/title" />
+        android:id="@+id/title"
+        android:textSize="35dp" />
 
     <TextView android:layout_width="match_parent" android:layout_height="0dp"
         android:text="Description"
         android:layout_weight="4"
         android:gravity="center_vertical|center_horizontal"
-        android:id="@+id/description" />
+        android:id="@+id/description"
+        android:textSize="30dp" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -32,6 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:text="Next Step"
-        />
+        android:background="#ff0e89ff" />
 
 </LinearLayout>

@@ -2,36 +2,38 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.julio.final_movil.ProcessActivity">
+    tools:context="com.example.julio.final_movil.ProcessActivity"
+    android:background="#ff00acff">
 
-<TextView android:layout_width="match_parent" android:layout_height="0dp"
-    android:text="Title"
-    android:layout_weight="1"
-    android:gravity="center_vertical|center_horizontal"
-    android:id="@+id/title" />
-<Spinner
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_span="1"
-    android:layout_weight="4"
-    android:layout_gravity="center"
-    android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true"
-    android:id="@+id/content" />
+    <TextView android:layout_width="match_parent" android:layout_height="0dp"
+        android:text="Title"
+        android:layout_weight="1"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/title"
+        android:textSize="35dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_span="1"
+        android:layout_weight="4"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/content" />
 
-<TextView android:layout_width="match_parent" android:layout_height="0dp"
-    android:text="Description"
-    android:layout_weight="2"
-    android:gravity="center_vertical|center_horizontal"
-    android:id="@+id/description" />
+    <TextView android:layout_width="match_parent" android:layout_height="0dp"
+        android:text="Description"
+        android:layout_weight="2"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/description"
+        android:textSize="30dp" />
 
-<Button
-    android:id="@+id/btnProcedures"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="0.5"
-    android:text="Load Steps"
-    android:onClick="getSteps"
-    />
+    <Button
+        android:id="@+id/btnProcedures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="Load Steps"
+        android:onClick="getSteps"
+        android:background="#ff0e89ff" />
 
 </LinearLayout>

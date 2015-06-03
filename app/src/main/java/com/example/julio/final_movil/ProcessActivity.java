@@ -70,6 +70,8 @@ public class ProcessActivity extends ActionBarActivity {
 
         Intent i = new Intent(this, StepsActivity.class);
         i.putExtra("stepurl", newurl);
+        i.putExtra("start", 0);
+        i.putExtra("title", title.getText());
         startActivity(i);
 
     }

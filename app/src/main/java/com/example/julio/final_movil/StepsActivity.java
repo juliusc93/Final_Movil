@@ -24,7 +24,7 @@ import java.util.List;
 
 public class StepsActivity extends ActionBarActivity {
 
-    private List<String> arraySpinner;
+    private List<Step> arraySpinner;
     private TextView title;
     private TextView desc;
     private int step;
@@ -46,7 +46,6 @@ public class StepsActivity extends ActionBarActivity {
         title.setText(i.getStringExtra("title"));
         desc.setText("hola");
         url = i.getStringExtra("stepurl");
-
         new GetData().execute();
     }
 
@@ -93,13 +92,32 @@ public class StepsActivity extends ActionBarActivity {
             if (jsonStr != null) {
                 try {
                     steps = new JSONArray(jsonStr);
-                    //arraySpinner = new ArrayList<Group>();
+                    arraySpinner = new ArrayList<Step>();
                     JSONObject obj = steps.getJSONObject(step);
                     JSONArray fields = new JSONObject(obj.getString("content")).getJSONArray("Fields");
                     for(int i = 0; i < fields.length(); i++){
                         JSONObject field = fields.getJSONObject(i);
                         caption = field.getString("caption");
-                        JSONArray values = field.getJSONArray("possible_values");
+                        int type = Integer.parseInt(field.getString("field_type"));
+                        Step s;
+                        if(type == 0){
+                            JSONArray values = field.getJSONArray("possible_values");
+
+                            for(int j = 0; j < values.length(); j++){
+                                try {
+                                    String decision = field.getJSONArray("Decisions").getJSONObject(j).getString("go_to_step");
+                                    s = new Step(values.getString(j), decision);
+                                }catch(JSONException e){
+                                    s = new Step(values.getString(j), "-1");
+                                }
+                                arraySpinner.add(s);
+                            }
+                        }
+                        else{
+                            String decision = field.getJSONArray("Decisions").getJSONObject(0).getString("go_to_step");
+                            s = new Step(caption, decision);
+                            arraySpinner.add(s);
+                        }
                     }
 
                     /*JSONObject test = new JSONObject(str);
@@ -127,13 +145,11 @@ public class StepsActivity extends ActionBarActivity {
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();
-
             desc.setText(caption);
-           /* spinner = (Spinner) findViewById(R.id.content);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_style, arraySpinner);
+            spinner = (Spinner) findViewById(R.id.content);
+            ArrayAdapter<Step> adapter = new ArrayAdapter<Step>(getBaseContext(), R.layout.spinner_style, arraySpinner);
             spinner.setAdapter(adapter);
-
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     Group g = (Group) adapterView.getItemAtPosition(i);

@@ -76,6 +76,8 @@ public class StepsActivity extends ActionBarActivity {
 
         }
         else new GetData().execute();
+        //if(title.getVisibility() != View.GONE) title.setVisibility(View.GONE);
+        //else title.setVisibility(View.VISIBLE);
     }
 
     private class GetData extends AsyncTask<Void, Void, Void> {

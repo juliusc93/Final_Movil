@@ -71,6 +71,13 @@ public class StepsActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void goToNext(View view){
+        if(step < 0){
+
+        }
+        else new GetData().execute();
+    }
+
     private class GetData extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -105,17 +112,25 @@ public class StepsActivity extends ActionBarActivity {
 
                             for(int j = 0; j < values.length(); j++){
                                 try {
-                                    String decision = field.getJSONArray("Decisions").getJSONObject(j).getString("go_to_step");
-                                    s = new Step(values.getString(j), decision);
+                                    String name = values.getString(j), decision="-1";
+                                    JSONArray ja = new JSONObject(obj.getString("content")).getJSONArray("Decisions");
+                                    for(int k = 0; k < ja.length(); k++){
+                                        JSONObject jo = ja.getJSONObject(k);
+                                        if(jo.getJSONArray("branch").getJSONObject(0).getString("value").equals(name)){
+                                            decision = jo.getString("go_to_step");
+                                            break;
+                                        }
+                                    }
+                                    s = new Step(name, Integer.parseInt(decision));
                                 }catch(JSONException e){
-                                    s = new Step(values.getString(j), "-1");
+                                    s = new Step(values.getString(j), -1);
                                 }
                                 arraySpinner.add(s);
                             }
                         }
                         else{
-                            String decision = field.getJSONArray("Decisions").getJSONObject(0).getString("go_to_step");
-                            s = new Step(caption, decision);
+                            String decision = new JSONObject(obj.getString("content")).getJSONArray("Decisions").getJSONObject(0).getString("go_to_step");
+                            s = new Step("This step has no branch. Just click the button below", Integer.parseInt(decision));
                             arraySpinner.add(s);
                         }
                     }
@@ -149,21 +164,21 @@ public class StepsActivity extends ActionBarActivity {
             spinner = (Spinner) findViewById(R.id.content);
             ArrayAdapter<Step> adapter = new ArrayAdapter<Step>(getBaseContext(), R.layout.spinner_style, arraySpinner);
             spinner.setAdapter(adapter);
-            /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    Group g = (Group) adapterView.getItemAtPosition(i);
-                    String procedure_id = g.getProcedure();
-                    newurl = "https://dynamicformapi.herokuapp.com/steps/by_procedure/" + procedure_id+ ".json";
-                    title.setText(g.getName());
-                    desc.setText(g.getDescription());
+                    Step s = (Step) adapterView.getItemAtPosition(i);
+                    //String procedure_id = g.getProcedure();
+                    //newurl = "https://dynamicformapi.herokuapp.com/steps/by_procedure/" + procedure_id+ ".json";
+                    step = s.getNext() - 1; // stupid offset
+                    boolean x = true;
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
 
                 }
-            });*/
+            });
         }
     }
 }

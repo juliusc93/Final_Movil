@@ -36,6 +36,6 @@
         android:layout_weight="0.5"
         android:text="Next Step"
         android:background="#ff0e89ff"
-        android:onClick="nextStep"/>
+        android:onClick="goToNext"/>
 
 </LinearLayout>

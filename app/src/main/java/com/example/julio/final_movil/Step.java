@@ -8,9 +8,9 @@ import org.json.JSONArray;
 public class Step {
 
     private String name;
-    private String next;
+    private int next;
 
-    public Step(String name, String next) {
+    public Step(String name, int next) {
         this.name = name;
         this.next = next;
     }
@@ -23,11 +23,11 @@ public class Step {
         this.name = name;
     }
 
-    public String getNext() {
+    public int getNext() {
         return next;
     }
 
-    public void setNext(String next) {
+    public void setNext(int next) {
         this.next = next;
     }
 
